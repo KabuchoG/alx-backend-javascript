@@ -1,9 +1,6 @@
-function signUpUser(firstName, lastName) {
-  return new Promise((resolve, reject) => {
-    resolve({
-      firstName,
-      lastName,
-    });
-    reject(new Error("rejected"));
+export function signUpUser(firstName, lastName) {
+  return new Promise.resolve({
+    firstName,
+    lastName,
   });
 }
