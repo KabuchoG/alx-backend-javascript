@@ -11,6 +11,5 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
         value: res.status === 'fulfilled' ? res.value : res.reason,
       };
       return feedback;
-    }))
-    .catch(new Error('Unable to resolve.'));
+    }));
 }
