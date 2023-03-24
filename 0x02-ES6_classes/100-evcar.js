@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Car from './10-car';
 
 class EVCar extends Car {

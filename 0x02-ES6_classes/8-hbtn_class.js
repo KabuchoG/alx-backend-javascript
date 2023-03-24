@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 class HolbertonClass {
   constructor(size, location) {
     this._size = size;

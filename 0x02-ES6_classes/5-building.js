@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 class Building {
   constructor(sqft) {
     if (
