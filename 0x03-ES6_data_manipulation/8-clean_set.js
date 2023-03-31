@@ -1,10 +1,22 @@
-export default function cleanSet(set, startString) {
-  // Create a new Set containing only elements of `set` that start with `startString`
-  const newSet = new Set([...set].filter((val) => val.startsWith(startString)));
-  // Map over the elements of `newSet`, slicing off `startString` and joining with a dash separator
-  return [...newSet].map((val) => val.slice(startString.length)).join('-');
-}
+// export default  fucntion cleanSet(set, startString) {
 
-// Call `cleanSet` twice with different inputs and log the results to the console
-console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), 'bon'));
-console.log(cleanSet(new Set(['bonjovi', 'bonaparte', 'bonappetit', 'banana']), ''));
+//     const newSet = new Set([...set].filter((val) => val.startsWith(startString)))
+//     return [...newSet].map((val) => val.slice(startString.length)).join("-")
+// }
+
+export default function cleanSet(set, startString) {
+  const parts = [];
+  if (!set || !startString || !(set instanceof Set) || typeof startString !== 'string') {
+    return '';
+  }
+  for (const value of set.values()) {
+    if (typeof value === 'string' && value.startsWith(startString)) {
+      const valueSubStr = value.substring(startString.length);
+
+      if (valueSubStr && valueSubStr !== value) {
+        parts.push(valueSubStr);
+      }
+    }
+  }
+  return parts.join('-');
+}
