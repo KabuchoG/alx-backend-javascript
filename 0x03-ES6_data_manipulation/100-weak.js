@@ -1,10 +1,26 @@
-const weakMap = new WeakMap();
+/**
+ * A weak map of endpoints and the number of calls made.
+ */
+export const weakMap = new WeakMap();
 
-export default function queryAPI(endpoint) {
-  const count = weakMap.get(endpoint) || 0;
-  if (count >= 5) {
+/**
+ * The maximum number of calls for an endpoint.
+ */
+const MAX_ENDPOINT_CALLS = 5;
+
+/**
+ * Tracks the number of calls made to an API's endpoint.
+ * @param {{
+ *   protocol: String,
+ *   name: String,
+ * }} endpoint - The endpoint to make a request to.
+ */
+export function queryAPI(endpoint) {
+  if (!weakMap.has(endpoint)) {
+    weakMap.set(endpoint, 0);
+  }
+  weakMap.set(endpoint, weakMap.get(endpoint) + 1);
+  if (weakMap.get(endpoint) >= MAX_ENDPOINT_CALLS) {
     throw new Error('Endpoint load is high');
   }
-  weakMap.set(endpoint, count + 1);
-  // rest of your code
 }
